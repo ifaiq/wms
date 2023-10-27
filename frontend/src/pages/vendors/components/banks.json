@@ -1,0 +1,425 @@
+{
+  "PAK": {
+    "name": "Pakistan",
+    "country_code": "PAK",
+    "list": [
+      {
+        "bank": "Al Baraka Bank (Pakistan) Limited"
+      },
+      {
+        "bank": "Allied Bank Limited"
+      },
+      {
+        "bank": "Bank of China Limited Pakistan Operations"
+      },
+      {
+        "bank": "Bank Alfalah Limited"
+      },
+      {
+        "bank": "Bank Al-Habib Limited"
+      },
+      {
+        "bank": "BankIslami Pakistan Limited"
+      },
+      {
+        "bank": "Citi Bank NA"
+      },
+      {
+        "bank": "Dubai Islamic Bank Pakistan Limited"
+      },
+      {
+        "bank": "Faysal Bank Limited"
+      },
+      {
+        "bank": "First Women Bank Limited"
+      },
+      {
+        "bank": "Habib Bank Limited"
+      },
+      {
+        "bank": "Habib Metropolitan Bank Limited"
+      },
+      {
+        "bank": "Industrial and Commercial Bank of China"
+      },
+      {
+        "bank": "Industrial Development Bank of Pakistan"
+      },
+      {
+        "bank": "JS Bank Limited"
+      },
+      {
+        "bank": "MCB Bank Limited"
+      },
+      {
+        "bank": "MCB Islamic Bank Limited"
+      },
+      {
+        "bank": "Meezan Bank Limited"
+      },
+      {
+        "bank": "National Bank of Pakistan"
+      },
+      {
+        "bank": "SME Bank Limited"
+      },
+      {
+        "bank": "Samba Bank Limited"
+      },
+      {
+        "bank": "Sindh Bank Limited"
+      },
+      {
+        "bank": "Soneri Bank Limited"
+      },
+      {
+        "bank": "Standard Chartered Bank (Pakistan) Limited"
+      },
+      {
+        "bank": "Summit Bank Limited"
+      },
+      {
+        "bank": "The Bank of Khyber"
+      },
+      {
+        "bank": "The Bank of Punjab"
+      },
+      {
+        "bank": "The Punjab Provincial Cooperative Bank Limited"
+      },
+      {
+        "bank": "United Bank Limited"
+      },
+      {
+        "bank": "Advans Micro Finance Bank Limited"
+      },
+      {
+        "bank": "APNA Micro Finance Bank Limited"
+      },
+      {
+        "bank": "FINCA Micro Finance Bank Limited"
+      },
+      {
+        "bank": "Khushhali Bank Limited"
+      },
+      {
+        "bank": "Mobilink Microfinance Bank Limited"
+      },
+      {
+        "bank": "NRSP Micro Finance Bank Limited"
+      },
+      {
+        "bank": "Pak Oman Micro Finance Bank Limited"
+      },
+      {
+        "bank": "Sindh Microfinance Bank Limited"
+      },
+      {
+        "bank": "Tameer Micro Finance Bank Limited"
+      },
+      {
+        "bank": "The First Micro Finance Bank Limited"
+      },
+      {
+        "bank": "U Micro Finance Bank Limited"
+      }
+    ]
+  },
+  "SAUDI": {
+    "name": "Saudi Arabia",
+    "country_code": "SAUDI",
+    "list": [
+      {
+        "bank": "Saudi National Bank"
+      },
+      {
+        "bank": "Al Rajhi Bank"
+      },
+      {
+        "bank": "Riyad Bank"
+      },
+      {
+        "bank": "The Saudi British Bank"
+      },
+      {
+        "bank": "Arab National Bank"
+      },
+      {
+        "bank": "Banque Saudi Fransi"
+      },
+      {
+        "bank": "Saudi Investment Bank"
+      },
+      {
+        "bank": "Bank AlJazira"
+      },
+      {
+        "bank": "Bank AlBilad"
+      },
+      {
+        "bank": "Gulf International Bank Saudi Arabia (GIB-SA)"
+      },
+      {
+        "bank": "STC bank"
+      },
+      {
+        "bank": "Saudi Digital Bank"
+      },
+      {
+        "bank": "Emirates NBD"
+      },
+      {
+        "bank": "National Bank of Bahrain (NBB)"
+      },
+      {
+        "bank": "National Bank of Kuwait (NBK)"
+      },
+      {
+        "bank": "Muscat Bank"
+      },
+      {
+        "bank": "Deutsche Bank"
+      },
+      {
+        "bank": "BNP Paribas"
+      },
+      {
+        "bank": "J.P. Morgan Chase N.A"
+      },
+      {
+        "bank": "National Bank Of Pakistan (NBP)"
+      },
+      {
+        "bank": "T.C.ZIRAAT BANKASI A.S."
+      },
+      {
+        "bank": "Industrial and Commercial Bank of China (ICBC)"
+      },
+      {
+        "bank": "Qatar National Bank"
+      },
+      {
+        "bank": "MUFG Bank, Ltd."
+      },
+      {
+        "bank": "First Abu Dhabi Bank"
+      },
+      {
+        "bank": "Credit Suisse Bank"
+      },
+      {
+        "bank": "Standard Chartered Bank"
+      },
+      {
+        "bank": "Trade bank of Iraq"
+      },
+      {
+        "bank": "Bank of China Limited"
+      },
+      {
+        "bank": "Banque Misr"
+      },
+      {
+        "bank": "National Bank of Iraq"
+      },
+      {
+        "bank": "National Bank of Egypt"
+      },
+      {
+        "bank": "Sohar International Bank"
+      },
+      {
+        "bank": "D360 Bank"
+      }
+    ]
+  },
+  "ARE": {
+    "name": "United Arab Emirates",
+    "country_code": "ARE",
+    "list": [
+      {
+        "bank": "Abu Dhabi Commercial Bank"
+      },
+      {
+        "bank": "Abu Dhabi Islamic Bank"
+      },
+      {
+        "bank": "Ajman Bank"
+      },
+      {
+        "bank": "Al Hilal Bank"
+      },
+      {
+        "bank": "Al Maryah Community Bank"
+      },
+      {
+        "bank": "Al Masraf Arab Bank for Investment & Foreign Trade"
+      },
+      {
+        "bank": "Bank of Sharjah"
+      },
+      {
+        "bank": "Commercial Bank International"
+      },
+      {
+        "bank": "Commercial Bank of Dubai"
+      },
+      {
+        "bank": "Dubai Bank"
+      },
+      {
+        "bank": "Dubai Finance Bank"
+      },
+      {
+        "bank": "Dubai Islamic Bank"
+      },
+      {
+        "bank": "Emirates Investment Bank"
+      },
+      {
+        "bank": "Emirates Islamic"
+      },
+      {
+        "bank": "Emirates NBD"
+      },
+      {
+        "bank": "First Abu Dhabi Bank"
+      },
+      {
+        "bank": "Invest Bank"
+      },
+      {
+        "bank": "Mashreq"
+      },
+      {
+        "bank": "National Bank of Fujairah"
+      },
+      {
+        "bank": "National Bank of Ras Al-Khaimah PJSC (RAKBANK)"
+      },
+      {
+        "bank": "National Bank of Umm Al-Quwain"
+      },
+      {
+        "bank": "Noor Bank"
+      },
+      {
+        "bank": "Sharjah Islamic Bank"
+      },
+      {
+        "bank": "United Arab Bank"
+      },
+      {
+        "bank": "National Bank of Bahrain"
+      },
+      {
+        "bank": "Rafidain Bank"
+      },
+      {
+        "bank": "Arab Bank"
+      },
+      {
+        "bank": "Banque Misr"
+      },
+      {
+        "bank": "El Nilein Bank"
+      },
+      {
+        "bank": "National Bank of Oman"
+      },
+      {
+        "bank": "Credit Agricloe"
+      },
+      {
+        "bank": "Bank of Baroda"
+      },
+      {
+        "bank": "BNP Paribas"
+      },
+      {
+        "bank": "Janata Bank Limited"
+      },
+      {
+        "bank": "HSBC Bank Middle East Limited"
+      },
+      {
+        "bank": "Arab African International Bank"
+      },
+      {
+        "bank": "Al Khaliji"
+      },
+      {
+        "bank": "Al Ahli Bank of Kuwait"
+      },
+      {
+        "bank": "Habib Bank Ltd."
+      },
+      {
+        "bank": "Habib Bank A.G Zurich"
+      },
+      {
+        "bank": "Standard Chartered Bank"
+      },
+      {
+        "bank": "CitiBank N. A."
+      },
+      {
+        "bank": "Bank Saderat Iran"
+      },
+      {
+        "bank": "Bank Melli Iran"
+      },
+      {
+        "bank": "Banque Banorient France"
+      },
+      {
+        "bank": "NatWest Markets Plc"
+      },
+      {
+        "bank": "United Bank Ltd."
+      },
+      {
+        "bank": "Doha Bank"
+      },
+      {
+        "bank": "Saudi National Bank"
+      },
+      {
+        "bank": "National Bank of Kuwait"
+      },
+      {
+        "bank": "BOK International Bank"
+      },
+      {
+        "bank": "Industrial & Commercial Bank of China"
+      },
+      {
+        "bank": "Deutsche Bank AG"
+      },
+      {
+        "bank": "KEB Hana Bank"
+      },
+      {
+        "bank": "Barclays Bank PLC"
+      },
+      {
+        "bank": "Bank of China Limited"
+      },
+      {
+        "bank": "Gulf International Bank"
+      },
+      {
+        "bank": "MCB Bank Limited"
+      },
+      {
+        "bank": "Intesa Sanpaolo S.P.A"
+      },
+      {
+        "bank": "Agricultural Bank of China Ltd."
+      },
+      {
+        "bank": "Bank Al Falah Limited"
+      }
+    ]
+  }
+}

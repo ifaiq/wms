@@ -1,0 +1,9 @@
+{
+  "email_Locator": "input[placeholder = 'Email']",
+  "password_Locator": "input[placeholder = 'Password']",
+  "menuLocator": "[data-testid='GridViewOutlinedIcon']",
+  "confirmModalOK": "[data-test-id='confirmModalOk']",
+  "filterLocator": "[data-testid='FilterListOutlinedIcon']",
+  "clearFilter": "[data-test-id='clearFilterButton']",
+  "popupMessage": ".ant-notification-notice-with-icon > .ant-notification-notice-description"
+}

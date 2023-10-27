@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Vendor` MODIFY `type` ENUM('INDIVIDUAL', 'COMPANY', 'AOP') NOT NULL;

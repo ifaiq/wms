@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retailo PO</title>
+    <style>
+      table {
+        width: 100%;
+        font-size: 12px;
+      }
+
+      table td {
+        border-color: #92979c;
+      }
+      table td:empty {
+        width: 5%;
+      }
+      h3 {
+        padding: 0;
+        margin: 0;
+      }
+
+      .px-0 {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .table-header {
+        background: #92979c;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .sub-header {
+        background: #7b7d82;
+        color: #fff;
+      }
+
+      .long-table {
+        display: block;
+        page-break-inside: auto;
+      }
+
+      .long-table tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+      }
+
+      .long-table td {
+        page-break-inside: avoid;
+        page-break-after: auto;
+      }
+
+      html {
+        zoom: 0.7;
+      }
+
+      .subHeadings{
+        border-bottom: 3px gray solid; 
+        padding-bottom: 5px;
+      }
+
+      .subHeadingDetails{
+        padding-top: 5px;
+      }
+
+      .infoCol{
+        width: 140px;
+      }
+
+      .datesCols{
+        width: max-content;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <table border="0" cellpadding="0" cellspacing="0" class="border-none"style="width: 100%; table-layout: fixed; border-collapse: collapse; margin-bottom: 40px;">
+      <tr>
+        <td style="width: 60%; border-bottom: 0; border-right: 0; padding: 20px;">
+        <h1><%- purchaseOrder.title %></h1>
+        <h2 style="margin: 2px 0;"><%- purchaseOrder.vendor.name %></h2>
+        <p style="margin: 2px 0;"><%- purchaseOrder.country %></p>
+        <p style="margin: 2px 0;"><b>Phone: </b><%- purchaseOrder.vendor.phone %></p>
+        <p style="margin: 2px 0;"><b>Tax ID: </b><%- purchaseOrder.vendor.taxID %></p>
+      </td>
+      <td style="width: 20%; border-bottom: 0; border-right: 0; padding-right: 20px;">
+        <div style="margin: 0 10px; float: right;">
+          <img style="width: 170px;" src='https://dev-retailo-images.s3.me-south-1.amazonaws.com/Vendor/4/d162e3c1-677f-4dad-b2fe-f0afcbbce25e/60940c2d8afcf.png' />
+        </div>
+        <% if (purchaseOrder.currency === 'AED') { %> 
+          <div style="margin: 0 10px; float: right;">
+            <img style="width: 170px;" src='https://prod-retailo-images.s3.me-south-1.amazonaws.com/dxbuy-logo.png' />
+          </div>
+        <% } %>
+        </td>
+      </tr>
+    </table>
+    <table border="0" cellpadding="0" cellspacing="0" class="border-none"style="width: 100%; table-layout: fixed; border-collapse: collapse; margin-left: 20px; font-size:medium; margin-bottom: 30px">
+      <tr>
+        <td class="subHeadings infoCol"><b>Order #</b></td>
+        <td></td>
+        <td class="subHeadings datesCols"><b>Created At</b></td>
+        <td></td>
+        <td class="subHeadings datesCols"><b>Confirmed At</b></td>
+        <td></td>
+        <% if (purchaseOrder.payment) { %>
+          <td class="subHeadings infoCol"><b>Payment Terms</b></td>
+          <td></td>
+        <% } %>
+      </tr>
+      <tr>
+        <td class="subHeadingDetails infoCol"><%= purchaseOrder.id %></td>
+        <td></td>
+        <td class="subHeadingDetails datesCols"><%= purchaseOrder.createdDate %></td>
+        <td></td>
+        <td class="subHeadingDetails datesCols"><%= purchaseOrder.confirmedDate %></td>
+        <td></td>
+        <% if (purchaseOrder.payment) { %>
+          <td class="subHeadingDetails infoCol"><%= purchaseOrder.payment %> <% if (purchaseOrder.payment === 'Credit') { %> - <%= purchaseOrder.paymentDays %> Day(s) <% } %></td>
+          <td></td>
+        <% } %>
+      </tr>
+    </table>
+    <table border="0" cellpadding="0" cellspacing="0" class="border-none"style="width: 100%; table-layout: fixed; border-collapse: collapse;">
+      <tr>
+        <td>
+          <table border="0" cellpadding="13" cellspacing="0" class="border-none" style="width: 100%; table-layout: fixed; border-collapse: collapse;">
+            <tr>
+              <td class="px-0">
+                <table border="0" cellpadding="5" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse;">
+                  <td width="100%">
+                    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse; word-wrap:break-word; border: solid 1px;">
+                      <tr class="sub-header">
+                        <td>
+                          <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse; border: 0;">
+                            <tr>
+                              <td align="center" style="width: 29%; border-bottom: 0; border-right: 0;">Item Name:</td>
+                              <td align="center" style="width: 8%; border-bottom: 0;">Quantity:</td>
+                              <td align="center" style="width: 15%; border-bottom: 0;">Unit Price (<%= purchaseOrder.currency %>):</td>
+                              <td align="center" style="width: 15%; border-bottom: 0;">MRP (<%= purchaseOrder.currency %>):</td>
+                              <td align="center" style="width: 15%; border-bottom: 0;">Tax (<%= purchaseOrder.currency %>):</td>
+                              <td align="center" style="width: 17%; border-bottom: 0; border-left: 0;">Total Price (<%= purchaseOrder.currency %>):</td>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <% purchaseOrder.products.forEach(function(item){ %>
+                          <tr>
+                            <td>
+                              <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse; border: 0;">
+                                <tr>
+                                  <td align="center" style="width: 29%; border-bottom: 0; border-right: 0;"><%= item.sku %> - <%= item.name %></td>
+                                  <td align="center" style="width: 8%; border-bottom: 0;"><%= item.quantity %></td>
+                                  <td align="center" style="width: 15%; border-bottom: 0;"><%= item.price %></td>
+                                  <td align="center" style="width: 15%; border-bottom: 0;"><%= item.mrp %></td>
+                                  <td align="center" style="width: 15%; border-bottom: 0;"><%= item.taxAmount %></td>
+                                  <td align="center" style="width: 17%; border-bottom: 0; border-left: 0;"><%= item.subTotalWithTax %></td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        <% }); %>
+                      </tr>
+                    </table>
+                  </td>
+                </table>
+              </td>
+            </tr>
+            <tr style="page-break-inside:avoid;">
+              <td class="px-0">
+                <div style="page-break-inside: avoid;">
+                  <table border="0" cellpadding="5" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse;">
+                    <td width="55%">&nbsp;</td>
+                    <td width="45%">
+                      <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse; word-wrap:break-word; border: solid 1px;">
+                        <tr>
+                          <td>
+                            <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse; border: 0;">
+                              <tr>
+                                <td style="width: 70%; border-bottom: 0; border-right: 0;">Total Tax (<%= purchaseOrder.currency %>):</td>
+                                <td align="center" style="width: 30%; border-bottom: 0; border-left: 0;"><%= purchaseOrder.totalTaxAmount %></td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse; border: 0;">
+                              <tr>
+                                <td style="width: 70%; border-bottom: 0; border-right: 0;  ">Total Price (<%= purchaseOrder.currency %>):</td>
+                                <td align="center" style="width: 30%; border-bottom: 0; border-left: 0;"><%= purchaseOrder.totalWithTax %></td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse; border: 0;">
+                              <tr>
+                                <td style="width: 70%; border-bottom: 0; border-right: 0;  ">Total Products:</td>
+                                <td align="center" style="width: 30%; border-bottom: 0; border-left: 0;"><%= purchaseOrder.products.length %></td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; table-layout: fixed; border-collapse: collapse; border: 0;">
+                              <tr>
+                                <td style="width: 70%; border-bottom: 0; border-right: 0;  ">Total Qty:</td>
+                                <td align="center" style="width: 30%; border-bottom: 0; border-left: 0;"><%= purchaseOrder.totalQty %></td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

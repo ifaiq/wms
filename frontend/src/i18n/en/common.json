@@ -1,0 +1,12 @@
+{
+  "welcome": {
+    "title": "Welcome to {{framework}}",
+    "description": "Lets start building a beautiful application."
+  },
+  "okText": "Yes",
+  "cancelText": "No",
+  "confirmText": "Are you sure !",
+  "error": {
+    "title": "Something went wrong"
+  }
+}

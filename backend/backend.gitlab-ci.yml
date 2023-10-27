@@ -1,0 +1,50 @@
+install_dependencies_backend:
+  stage: init
+  script:
+    - cd backend
+    - npm config set @development-team20:registry=https://gitlab.com/api/v4/packages/npm/
+    - npm config set "//gitlab.com/api/v4/packages/npm/:_authToken" $GL_NPM_TOKEN
+    - npm config set '//gitlab.com/api/v4/projects/:_authToken=${GL_NPM_TOKEN}'
+    - npm ci
+
+prettier_backend:
+  stage: prettier
+  cache: []
+  needs: ['install_dependencies_backend']
+  script:
+    - cd backend/
+    - npx prettier -l src
+
+lint_backend:
+  stage: lint
+  needs: ['install_dependencies_backend']
+  script:
+    - cd backend
+    - npm run lint
+    - npx prisma format
+
+build_backend:
+  stage: build
+  needs: ['install_dependencies_backend']
+  script:
+    - cd backend
+    - npx prisma generate
+    - npm run build
+
+test_backend:
+  image: docker/compose:latest
+  needs: ['install_dependencies_backend']
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ''
+  stage: test
+  script:
+    - cd backend
+    - cp .env.docker .env
+    - docker-compose -f docker-compose-db.yml up -d
+    - export DB_URL=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.Gateway}}{{end}}' db)
+    - DB_HOST=${DB_URL} docker-compose -f docker-compose.yml up --abort-on-container-exit
+    - docker-compose down --remove-orphans -v

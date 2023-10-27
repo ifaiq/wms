@@ -1,0 +1,13 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+export const ErrorScreen: React.FC = () => {
+  const [t] = useTranslation('common');
+  return (
+    <div className="App" data-testid="error-boundary">
+      <header className="App-header">
+        <p>{t('error.title')}</p>
+      </header>
+    </div>
+  );
+};

@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+/** Imports from the network */
+@font-face {
+  font-family: 'Poppins Sans';
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+}
+@font-face {
+  font-family: 'Poppins Sans';
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Poppins Sans';
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,500&display=swap');
+  font-style: italic, oblique;
+}
+@font-face {
+  font-family: 'Poppins Sans';
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,600&display=swap');
+  font-weight: bold;
+  font-style: italic, oblique;
+}
+
+/** Imports from the relative paths for locally stored fonts */
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter-VariableFont_slnt\,wght.ttf');
+}
+@font-face {
+  font-family: Georgia;
+  src: url('../assets/fonts/Georgia-Regular-font.ttf');
+}
+
+@font-face {
+  font-family: Georgia Bold;
+  src: url('../assets/fonts/georgia-bold.ttf');
+}
+
+@font-face {
+  font-family: Georgia Italic;
+  src: url('../assets/fonts/georgiai.ttf');
+}
+
+@font-face {
+  font-family: Georgia Bold Italic;
+  src: url('../assets/fonts/georgiaz.ttf');
+}
+
+body {
+  overflow: auto;
+  overscroll-behavior-y: contain;
+  --sidebar-right-size: 220px;
+}
+
+p,
+span {
+  font-family: 'Inter', 'Poppins', sans-serif;
+}
+
+h1 {
+  font-family: 'Inter', 'Poppins', sans-serif;
+}
+h2 {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  font-weight: 500;
+}
+h3 {
+  font-family: 'Inter', serif;
+}
+h4 {
+  font-family: 'Inter', serif;
+}
+h5 {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  font-weight: 500;
+}
+label {
+  font-family: 'Inter', 'Poppins', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+span,
+p {
+  @apply text-black;
+}
+
+input {
+  @apply focus:outline-none;
+  @apply focus:bg-white;
+  @apply focus:ring-opacity-0;
+  @apply ring-opacity-0;
+}
+
+*:focus {
+  outline: none;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  @apply border;
+  @apply border-gray-grey3;
+  -webkit-text-fill-color: inherit;
+  -webkit-box-shadow: 0 0 0px 1000px #f1f4f6 inset;
+  transition: background-color 1000s ease-in-out 0s;
+}
+
+.app-wrapper {
+  /* display: grid; */
+  /* grid-template-columns: 320px 1fr; */
+  /* width: 100vw; */
+  height: 100vh;
+}
+.highlighted-view {
+  border: 2px solid #ffad77;
+}
+/* antd global styling*/
+.ant-select-selector {
+  border-radius: 8px !important;
+}
+.ant-picker {
+  width: 100%;
+  background-color: #f1f4f6;
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: #f1f4f6;
+}
+.ant-tabs-nav {
+  width: 100% !important;
+}
+.ant-tabs-tab {
+  display: block;
+  flex: 1;
+  text-align: center;
+}
+.ant-tabs-nav > div:nth-of-type(1) {
+  display: unset !important;
+  width: 100% !important;
+}
+.ant-modal-content {
+  border-radius: 8px;
+}
+
+.ant-select-show-search.ant-select:not(.ant-select-customize-input)
+  .ant-select-selector {
+  height: auto;
+}
+
+.ant-select-single.ant-select-show-arrow .ant-select-selection-item {
+  white-space: normal;
+  word-break: break-all;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #f7f7fc;
+  font-weight: 600;
+}
+
+.ant-table-thead
+  > tr
+  > th:not(:last-child):not(.ant-table-selection-column):not(
+    .ant-table-row-expand-icon-cell
+  ):not([colspan])::before {
+  height: 100%;
+}
+
+.ant-pagination-simple .ant-pagination-simple-pager input {
+  padding: 0;
+}
+
+.ant-steps-item-process
+  > .ant-steps-item-container
+  > .ant-steps-item-content
+  > .ant-steps-item-title {
+  @apply text-blue-blue2;
+}
+
+.ant-form-item-label
+  > label.ant-form-item-required:not(
+    .ant-form-item-required-mark-optional
+  )::after {
+  @apply text-green mr-[4px] text-sm inline-block leading-none content-['*'];
+}
+
+.ant-form-item-label
+  > label.ant-form-item-required:not(
+    .ant-form-item-required-mark-optional
+  )::before {
+  @apply hidden;
+}
+.ant-drawer .ant-picker-clear {
+  @apply bg-[#f1f4f6];
+}
+
+.ant-select-clear {
+  @apply bg-[#f1f4f6] top-[43%];
+}
+
+.ant-picker-large .ant-picker-input > input {
+  @apply bg-[#f1f4f6];
+}
+
+.passwordBg input {
+  background: #f1f4f6;
+}
+
+.ant-checkbox-inner {
+  width: 25px;
+  height: 25px;
+}
+
+.ant-checkbox-inner::after {
+  width: 7.71428571px;
+  height: 14.14285714px;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #2551b3;
+  border-color: #2551b3;
+}
+
+.ant-checkbox-disabled .ant-checkbox-inner::after {
+  border-color: #ffffff !important;
+}
+
+.ant-tooltip {
+  max-width: 500px;
+}

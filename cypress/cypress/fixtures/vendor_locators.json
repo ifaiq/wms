@@ -1,0 +1,43 @@
+{
+  
+  "add_edit_confirm_Vendor_Title" : "div span.text-2xl.font-bold",
+  "click_Create_Vendor": ".justify-center",
+  "company_Name_Locator": "input[placeholder = 'Type company here']",
+  "vendor_Name_Locator": "input[placeholder = 'Type vendor here']",
+  "error_Empty_Vendor_Form_Locator": "div[role = 'alert']",
+  "designation_Locator": "input[placeholder = 'Type designation here']",
+  "address_Locator": "input[placeholder = 'Type address here']",
+  "ntn_Locator": "input[placeholder = 'Add NTN No.']",
+  "nic_Locator": "input[placeholder = 'Add NIC No.']",
+  "strn_Locator": "input[placeholder = 'Add STRN No.']",
+  "vat_Locator": "input[placeholder = 'Add VAT No.']",
+  "cr_No_Locator": "input[placeholder = 'Add CR No.']",
+  "contact_No_Locator": "input[placeholder = 'Add Contact No.']",
+  "email_Address_Locator": "input[placeholder = 'Type email here']",
+  "country_Locator": "#vendor-save_country",
+  "country_Locator_Pakistan": "[title='Pakistan'] > .ant-select-item-option-content",
+  "country_Locator_Saudi": "[title='Saudi Arabia'] > .ant-select-item-option-content",
+  "country_Locator_Dubai": "[title='United Arab Emirates'] > .ant-select-item-option-content",
+  "type_Locator": "#vendor-save_type",
+  "type_Locator_Individual": "[title='INDIVIDUAL'] > .ant-select-item-option-content",
+  "type_Locator_Company": "[title='COMPANY'] > .ant-select-item-option-content",
+  "bank_Locator": "#vendor-save_bankAccounts_0_bank",
+  "pakistani_Select_Bank_Locator": "[title='Bank Alfalah Limited'] > .ant-select-item-option-content",
+  "saudi_Select_Bank_Locator": "[title='Saudi National Bank'] > .ant-select-item-option-content",
+  "uae_Select_Bank_Locator": "[title='Abu Dhabi Commercial Bank'] > .ant-select-item-option-content",
+  "iban_Locator": "input[placeholder = 'Add IBAN']",
+  "click_Save_Vendor": "button[data-test-id = 'testVendorSubmit']",
+  "click_Clear_Vendor": "button[data-test-id = 'testVendorResetForm']",
+  "click_No_Clearinfo": "div div div button.ant-btn.ant-btn-default",
+  "click_Yes_Clearinfo": "div div div button.ant-btn.ant-btn-primary",
+  "click_Conform_Button": "button[data-test-id = 'testConfirmVendor']",
+  "click_Unlock_Button": "button[data-test-id = 'testVendorLockUnlockButton']",
+  "click_enable_disable_Button": "button[data-test-id = 'testVendorDisableSwitch']"
+
+
+
+
+}
+
+
+

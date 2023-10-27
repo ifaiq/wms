@@ -1,0 +1,33 @@
+{
+  "adjust": {
+    "title": "Adjustment",
+    "createdOn": "created on",
+    "confirmedOn": "confirmed on",
+    "SelectCountry": "Select Country",
+    "SelectCity": "Select City",
+    "SelectWarehouse": "Select Warehouse",
+    "userId": "User ID",
+    "SelectReason": "Select Reason",
+    "typeReason": "Type your reason",
+    "country": "Country",
+    "city": "City",
+    "warehouse": "Warehouse",
+    "reason": "Reason",
+    "createAdjust": "Create Adjustment",
+    "clear": "Clear Info",
+    "save": "Save Info",
+    "addSKUs": "Add SKUs",
+    "uploadCSVFile": "Upload CSV File",
+    "skuCode": "SKU Code",
+    "skuName": "SKU Name",
+    "physicalStock": "Physical Stock",
+    "totalQty": "New Total Qty",
+    "quantityDiff": "Qty Difference",
+    "cancel": "Cancel",
+    "edit": "Edit Adjustment",
+    "confirm": "Confirm",
+    "confirmText": "Are you sure, you want to confirm this adjustment",
+    "cancelText": "Are you sure, you want to cancel this adjustment",
+    "transfers": "Transfers"
+  }
+}

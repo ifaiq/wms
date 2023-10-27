@@ -1,0 +1,17 @@
+image: node:16.14.2-alpine
+
+stages:
+  - init
+  - prettier
+  - lint
+  - build
+  - test
+
+cache:
+  paths:
+    - backend/node_modules/
+    - frontend/node_modules/
+
+include: 
+  - '/backend/backend.gitlab-ci.yml'
+  - '/frontend/frontend.gitlab-ci.yml'

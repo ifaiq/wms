@@ -1,0 +1,16 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "assets": [
+      { "include": "*/**/*.ejs", "watchAssets": true, "outDir": "dist/src" }
+    ],
+    "plugins": [{
+      "name": "@nestjs/swagger/plugin",
+      "options": {
+        "dtoFileNameSuffix": [".dto.ts"],
+        "controllerFileNameSuffix": [".controller.ts"]
+      }
+    }]
+  }
+}

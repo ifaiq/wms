@@ -1,0 +1,26 @@
+{
+  "location": {
+    "title": "Locations",
+    "createLocation": "Create Location",
+    "createTitle": "Create new location",
+    "editLocation": "Edit Location",
+    "country": "Country",
+    "city": "City",
+    "warehouse": "Warehouse",
+    "location": "Location",
+    "priority": "Priority",
+    "avblForSale": "Available for Sale",
+    "grnApplicable": "GRN Applicable",
+    "selectWarehouse": "Select Warehouse",
+    "selectCountry": "Select Country",
+    "selectCity": "Select City",
+    "saveInfo": "Save Info",
+    "clearInfo": "Clear Info",
+    "parentLocation": "Parent Location",
+    "selectParentLoc": "Select Parent Location",
+    "enterLocation": "Enter Location",
+    "applyFilter": "Apply Filter",
+    "returnApplicable": "Return Applicable",
+    "disableLocation": "Disable Location"
+  }
+}

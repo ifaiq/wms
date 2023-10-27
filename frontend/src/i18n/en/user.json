@@ -1,0 +1,21 @@
+{
+  "user": {
+    "title": "Users",
+    "user": "User",
+    "createUser": "Create a User",
+    "srNo": "Sr No.",
+    "userName": "Name",
+    "email": "Email",
+    "role": "Role(s)",
+    "location": "Location",
+    "disable": "Disable",
+    "fullName": "Full Name",
+    "enterName": "Enter Full Name",
+    "enterEmail": "Enter Email",
+    "enterPassword": "Enter Password",
+    "selectRole": "Select Role",
+    "password": "Password",
+    "saveInfo": "Save Info",
+    "clearInfo": "Clear Info"
+  }
+}

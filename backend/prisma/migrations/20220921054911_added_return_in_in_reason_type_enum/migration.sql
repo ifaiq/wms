@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Reason` MODIFY `type` ENUM('RETURN', 'ADJUSTMENT', 'RETURN_IN') NOT NULL;

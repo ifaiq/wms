@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+  backend:
+    container_name: wms-backend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        GL_NPM_TOKEN: ${GL_NPM_TOKEN}
+    user: node
+    volumes:
+      - .:/usr/src/app
+      - nodemodules:/usr/src/app/node_modules
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    command: [ '/bin/sh', '-c', './run-tests.sh']
+    env_file:
+      - .env
+    depends_on:
+      - opensearch
+      - redis
+    networks:
+      - wms-network
+  opensearch:
+    container_name: opensearch
+    image: opensearchproject/opensearch:1.2.4
+    ports:
+      - ${AWS_PORT}:${AWS_PORT}
+    volumes:
+      - opensearch-data1:/usr/share/opensearch/data
+    env_file:
+      - .env
+    networks:
+      - wms-network
+  redis:
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    networks:
+      - wms-network
+
+networks:
+  wms-network:
+
+volumes:
+  nodemodules:
+  opensearch-data1:

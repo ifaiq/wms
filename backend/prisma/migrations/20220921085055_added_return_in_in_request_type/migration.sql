@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `InventoryRequest` MODIFY `type` ENUM('PURCHASE', 'RETURN', 'ADJUSTMENT', 'RECEIPT', 'TRANSFER', 'RETURN_IN') NOT NULL;

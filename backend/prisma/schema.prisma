@@ -1,0 +1,479 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum VendorType {
+  INDIVIDUAL
+  COMPANY
+  AOP
+}
+
+enum Country {
+  PAK
+  SAUDI
+  ARE
+}
+
+enum POStatus {
+  IN_REVIEW
+  PO
+  LOCKED
+  CANCELLED
+}
+
+enum ReceiptStatus {
+  READY
+  DONE
+  CANCELLED
+}
+
+enum AdjustmentStatus {
+  READY
+  CANCELLED
+  DONE
+}
+
+enum VendorStatus {
+  IN_REVIEW
+  LOCKED
+  DISABLED
+}
+
+enum TransferStatus {
+  READY
+  CANCELLED
+  DONE
+}
+
+enum ReasonType {
+  RETURN
+  ADJUSTMENT
+  RETURN_IN
+  TRANSFER
+}
+
+enum RequestType {
+  PURCHASE
+  RETURN
+  ADJUSTMENT
+  RECEIPT
+  TRANSFER
+  RETURN_IN
+}
+
+enum POType {
+  STANDARD
+  SHUTTLING
+  PROJECTION
+  JIT
+  DIRECT_DELIVERY
+  EXCLUSIVE_DISTRIBUTION
+  FREE_OF_COST
+}
+
+enum Currency {
+  AED
+  SAR
+  PKR
+  USD
+}
+
+enum UserStatus {
+  ENABLED
+  DISABLED
+}
+
+enum InventoryMovementType {
+  RECEIPT
+  RETURN_IN
+  RETURN_OUT
+  ADJUSTMENT
+  TRANSFER
+  BATCH_ACCEPTANCE
+  BATCH_CLOSING
+}
+
+enum InvoiceDocumentTypes {
+  SERVICE
+  DEBIT_NOTE_REBATE
+  DEBIT_NOTE_RETURN
+}
+
+model Vendor {
+  id             Int             @id @default(autoincrement())
+  name           String          @unique
+  type           VendorType
+  country        Country
+  taxID          String?
+  company        String?
+  address        String?
+  phone          String?
+  email          String?
+  jobPosition    String?
+  crNumber       String?
+  strn           String?
+  status         VendorStatus    @default(IN_REVIEW)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  attachment     Json?
+  purchaseOrders PurchaseOrder[]
+  bankAccounts   Json?
+  DraftInvoice   DraftInvoice[]
+}
+
+model User {
+  id                Int                 @id @default(autoincrement())
+  email             String              @unique
+  password          String
+  name              String?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  status            UserStatus          @default(ENABLED)
+  purchaseOrders    PurchaseOrder[]
+  Event             Event[]
+  UserRole          UserRole[]
+  Role              Role[]
+  Receipt           Receipt[]
+  ReturnReceipt     ReturnReceipt[]
+  Adjustment        Adjustment[]
+  Location          Location[]
+  Transfer          Transfer[]
+  Inventory         Inventory[]
+  InventoryMovement InventoryMovement[]
+  DraftInvoice      DraftInvoice[]
+}
+
+model Role {
+  id          Int        @id @default(autoincrement())
+  name        String     @unique @db.VarChar(50)
+  permissions Json
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  createdBy   User       @relation(fields: [createdById], references: [id])
+  createdById Int
+  UserRole    UserRole[]
+}
+
+model UserRole {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userID], references: [id])
+  userID    Int
+  role      Role     @relation(fields: [roleID], references: [id])
+  roleID    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PurchaseOrder {
+  id                 Int                    @id @default(autoincrement())
+  country            Country
+  businessUnitId     Int
+  warehouseId        Int
+  purchaser          User                   @relation(fields: [purchaserId], references: [id])
+  purchaserId        Int
+  vendor             Vendor                 @relation(fields: [vendorId], references: [id])
+  vendorId           Int
+  subTotalWithoutTax Decimal                @db.Decimal(15, 4)
+  totalTaxAmount     Decimal                @db.Decimal(15, 4)
+  totalWithTax       Decimal                @db.Decimal(15, 4)
+  status             POStatus
+  payment            String?
+  paymentDays        String?
+  gstInvoiceNumber   String?
+  attachment         Json?
+  confirmedAt        DateTime?
+  createdAt          DateTime               @default(now())
+  updatedAt          DateTime               @updatedAt
+  currency           Currency?
+  products           PurchaseOrderProduct[]
+  Receipt            Receipt[]
+  ReturnReceipt      ReturnReceipt[]
+  type               POType                 @default(STANDARD)
+}
+
+model PurchaseOrderProduct {
+  id                 Int           @id @default(autoincrement())
+  purchaseOrder      PurchaseOrder @relation(fields: [poId], references: [id])
+  poId               Int
+  productId          Int
+  sku                String
+  name               String
+  quantity           Int
+  price              Decimal       @db.Decimal(15, 4)
+  mrp                Decimal       @default(0) @db.Decimal(15, 4)
+  taxType            String?
+  taxAmount          Decimal       @db.Decimal(15, 4)
+  subTotalWithoutTax Decimal       @db.Decimal(15, 4)
+  subTotalWithTax    Decimal       @db.Decimal(15, 4)
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  @@unique([poId, productId])
+}
+
+model Receipt {
+  id             Int              @id @default(autoincrement())
+  purchaseOrder  PurchaseOrder    @relation(fields: [poId], references: [id])
+  poId           Int
+  status         ReceiptStatus
+  location       Location?        @relation(fields: [locationId], references: [id])
+  reason         Reason?          @relation(fields: [reasonId], references: [id])
+  reasonId       Int?
+  confirmedAt    DateTime?
+  returnInRef    ReturnReceipt?   @relation(name: "ReturnInRef", fields: [returnInRefId], references: [id])
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  createdBy      User             @relation(fields: [createdById], references: [id])
+  createdById    Int
+  returnReceipts ReturnReceipt[]  @relation(name: "ReceiptRef")
+  products       ReceiptProduct[]
+  locationId     Int?
+  returnInRefId  Int?
+  attachment     Json?
+  invoices       Json?
+}
+
+model ReceiptProduct {
+  id               Int       @id @default(autoincrement())
+  receipt          Receipt   @relation(fields: [receiptId], references: [id])
+  receiptId        Int
+  productId        Int
+  sku              String
+  name             String
+  quantityOrdered  Int
+  quantityReceived Int
+  expiry           DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@unique([receiptId, productId])
+}
+
+model ReturnReceipt {
+  id            Int                    @id @default(autoincrement())
+  receipt       Receipt                @relation(name: "ReceiptRef", fields: [receiptId], references: [id])
+  receiptId     Int
+  purchaseOrder PurchaseOrder          @relation(fields: [poId], references: [id])
+  poId          Int
+  reason        Reason                 @relation(fields: [reasonId], references: [id])
+  reasonId      Int
+  status        ReceiptStatus
+  location      Location?              @relation(fields: [locationId], references: [id])
+  confirmedAt   DateTime?
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+  createdBy     User                   @relation(fields: [createdById], references: [id])
+  createdById   Int
+  products      ReturnReceiptProduct[]
+  locationId    Int?
+  returnIn      Receipt[]              @relation(name: "ReturnInRef")
+  attachment    Json?
+  invoices      Json?
+}
+
+model ReturnReceiptProduct {
+  id               Int           @id @default(autoincrement())
+  receipt          ReturnReceipt @relation(fields: [receiptId], references: [id])
+  receiptId        Int
+  productId        Int
+  sku              String
+  name             String
+  quantityReceived Int
+  quantityReturned Int
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@unique([receiptId, productId])
+}
+
+model Event {
+  id               Int      @id @default(autoincrement())
+  tableName        String // table name that was updated
+  tableReferenceId Int // primary id of the row that was updated
+  fieldName        String // column name that was impacted
+  oldValue         String   @db.Text
+  newValue         String   @db.Text
+  updatedBy        Int
+  createdAt        DateTime @default(now())
+  user             User     @relation(fields: [updatedBy], references: [id])
+}
+
+model Adjustment {
+  id             Int                 @id @default(autoincrement())
+  status         AdjustmentStatus
+  country        Country
+  businessUnitId Int
+  warehouseId    Int
+  createdBy      User                @relation(fields: [createdById], references: [id])
+  createdById    Int
+  reasonId       Int
+  reason         Reason              @relation(fields: [reasonId], references: [id])
+  reasonValue    String?
+  location       Location?           @relation(fields: [locationId], references: [id])
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  confirmedAt    DateTime?
+  products       AdjustmentProduct[]
+  locationId     Int?
+  postingPeriod  DateTime?
+}
+
+model AdjustmentProduct {
+  id                 Int        @id @default(autoincrement())
+  adjustment         Adjustment @relation(fields: [adjustmentId], references: [id])
+  adjustmentId       Int
+  productId          Int
+  sku                String
+  name               String
+  actualQuantity     Int
+  physicalQuantity   Int        @default(0)
+  differenceQuantity Int        @default(0)
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+
+  @@unique([adjustmentId, productId])
+}
+
+model Reason {
+  id     Int        @id @default(autoincrement())
+  type   ReasonType
+  reason String
+
+  ReturnReceipt ReturnReceipt[]
+  Adjustment    Adjustment[]
+  Transfer      Transfer[]
+  Receipt       Receipt[]
+
+  @@unique([type, reason])
+}
+
+model InventoryRequest {
+  id             Int         @id @default(autoincrement())
+  referenceId    Int?
+  requestBody    Json
+  responseBody   Json?
+  responseStatus Int?
+  type           RequestType
+  idempotencyKey String?
+  isSuccessful   Boolean?
+  updatedAt      DateTime    @updatedAt
+  createdAt      DateTime    @default(now())
+}
+
+model Location {
+  id                Int                 @id @default(autoincrement())
+  name              String
+  ancestry          String? //(Please refer to https://makandracards.com/makandra/45275-storing-trees-in-databases#section-option-2-materialized-path)
+  country           Country
+  businessUnitId    Int
+  warehouseId       Int
+  warehouseName     String
+  parentId          Int?
+  parent            Location?           @relation("ParentChildren", fields: [parentId], references: [id])
+  children          Location[]          @relation("ParentChildren")
+  availableForSale  Boolean
+  grnApplicable     Boolean
+  returnApplicable  Boolean
+  priority          Int
+  disabled          Boolean             @default(false)
+  createdBy         User                @relation(fields: [createdById], references: [id])
+  createdById       Int
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  Receipt           Receipt[]
+  ReturnReceipt     ReturnReceipt[]
+  Adjustment        Adjustment[]
+  Inventory         Inventory[]
+  transferFrom      Transfer[]          @relation("fromLocation")
+  transferTo        Transfer[]          @relation("toLocation")
+  inventoryMovement InventoryMovement[] @relation("locationInventoryMovement")
+
+  @@unique([parentId, priority])
+  @@unique([warehouseId, name])
+}
+
+model Transfer {
+  id             Int               @id @default(autoincrement())
+  status         TransferStatus
+  country        Country
+  businessUnitId Int
+  warehouseId    Int
+  createdBy      User              @relation(fields: [createdById], references: [id])
+  createdById    Int
+  reasonId       Int
+  reason         Reason            @relation(fields: [reasonId], references: [id])
+  reasonValue    String?
+  fromlocation   Location          @relation("fromLocation", fields: [fromLocationId], references: [id])
+  fromLocationId Int
+  toLocation     Location          @relation("toLocation", fields: [toLocationId], references: [id])
+  toLocationId   Int
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  confirmedAt    DateTime?
+  products       TransferProduct[]
+}
+
+model TransferProduct {
+  id               Int      @id @default(autoincrement())
+  transfer         Transfer @relation(fields: [transferId], references: [id])
+  transferId       Int
+  productId        Int
+  sku              String
+  name             String
+  physicalQuantity Int
+  transferQuantity Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([transferId, productId])
+}
+
+model Inventory {
+  id               Int      @id @default(autoincrement())
+  country          Country
+  businessUnitId   Int
+  warehouseId      Int
+  location         Location @relation(fields: [locationId], references: [id])
+  locationId       Int
+  productId        Int
+  physicalQuantity Int
+  createdBy        User     @relation(fields: [createdById], references: [id])
+  createdById      Int
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([businessUnitId, warehouseId, locationId, productId])
+}
+
+model InventoryMovement {
+  id           Int                   @id @default(autoincrement())
+  location     Location              @relation("locationInventoryMovement", fields: [locationId], references: [id])
+  locationId   Int
+  productId    Int
+  oldQuantity  Int
+  quantity     Int
+  newQuantity  Int
+  createdBy    User?                 @relation(fields: [createdById], references: [id])
+  createdById  Int?
+  createdAt    DateTime              @default(now())
+  movementType InventoryMovementType
+  referenceId  Int
+  reason       String?
+}
+
+model DraftInvoice {
+  id          String               @id @default(uuid())
+  type        InvoiceDocumentTypes
+  createdBy   User?                @relation(fields: [createdById], references: [id])
+  createdById Int?
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+  vendor      Vendor?              @relation(fields: [vendorId], references: [id])
+  vendorId    Int?
+  detail      Json
+}

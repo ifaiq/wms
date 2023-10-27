@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  db:
+    container_name: db
+    hostname: db
+    image: mysql:8-oracle
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=wms
+    ports:
+      - 8128:3306
+    networks:
+      - wms-network
+networks:
+  wms-network:

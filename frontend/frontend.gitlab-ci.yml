@@ -1,0 +1,28 @@
+install_dependencies_frontend:
+  stage: init
+  script:
+    - cd frontend
+    - yarn install
+
+build_frontend:
+  stage: build
+  script:
+    - cd frontend
+    - yarn compile
+  only:
+    changes:
+      - frontend/**/*.{js,jsx,ts,tsx}
+
+lint_frontend:
+  stage: lint
+  needs: ["install_dependencies_frontend"]
+  script:
+    - cd frontend
+    - yarn lint
+
+test_frontend:
+  stage: test
+  needs: ["install_dependencies_frontend"]
+  script:
+    - cd frontend
+    - yarn test --watchAll=false
